@@ -6,13 +6,13 @@
   }
 
   function onDeviceReady() {
-    var parentElement = document.getElementById('deviceready');
-    var listeningElement = parentElement.querySelector('.listening');
-    var receivedElement = parentElement.querySelector('.received');
+    document.getElementById('deviceready').querySelector('.listening').setAttribute('style', 'display:none;');
+    var readyBlocks = document.body.querySelectorAll('.ready');
 
-    listeningElement.setAttribute('style', 'display:none;');
-    receivedElement.setAttribute('style', 'display:block;');
+    for(var i = readyBlocks.length; i--;) {
+      readyBlocks[i].setAttribute('style', 'display:block;');
+    }
 
-    console.log('Received Event: ' + id);
+    console.log('Device is ready');
   }
 })();

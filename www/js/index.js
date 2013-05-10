@@ -1,8 +1,9 @@
-(function() {
+var app = (function() {
   main();
 
   function main() {
     document.addEventListener('deviceready', onDeviceReady, false);
+    document.getElementById('start_animation').onclick = startAnimation;
   }
 
   function onDeviceReady() {
@@ -15,4 +16,11 @@
 
     console.log('Device is ready');
   }
+
+  function startAnimation() {
+    console.log('animation');
+    alert('animation');
+  }
+
+  return {onDeviceReady: onDeviceReady};
 })();

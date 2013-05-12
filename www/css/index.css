@@ -1,0 +1,16 @@
+body {
+    font-size: 14px;
+}
+
+@media screen and (-webkit-device-pixel-ratio: 0.75) {
+    body {font-size: 10.5px;}
+}
+@media screen and (-webkit-device-pixel-ratio: 1.0) {desktop browsers
+    body {font-size: 14px;}
+}
+@media screen and (-webkit-device-pixel-ratio: 1.5) {e.g. Google Nexus S (Samsung Galaxy S)
+    body {font-size: 16px;}
+}
+@media screen and (-webkit-device-pixel-ratio: 2.0) {e.g. iPad
+    body {font-size: 18px;}
+}

@@ -36,4 +36,6 @@
       tabBar.tabbar('setActive', '#' + id);
     }
   });
+
+  $("header a").attr("rel","external");
 })(jQuery);

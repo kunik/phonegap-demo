@@ -1,3 +1,45 @@
+/* 16px > 1em */
+.ui-bar,
+.ui-loader-verbose h1,
+.ui-bar h1, .ui-bar h2, .ui-bar h3, .ui-bar h4, .ui-bar h5, .ui-bar h6,
+.ui-header .ui-title, 
+.ui-footer .ui-title,
+.ui-btn-inner.ui-btn-inner,
+.ui-fullsize .ui-btn-inner,
+.ui-fullsize .ui-btn-inner,
+label.ui-submit,
+.ui-collapsible-heading,
+.ui-controlgroup-label,
+.ui-controlgroup .ui-checkbox label, .ui-controlgroup .ui-radio label,
+.ui-popup .ui-title,
+label.ui-select,
+label.ui-input-text,
+textarea.ui-input-text,
+.ui-li-heading,
+label.ui-slider,
+.ui-slider-switch .ui-slider-label {
+    font-size: 1em;
+}
+
+/* 14px > 0.875em */
+.ui-li-divider,
+input.ui-mini, .ui-mini input, textarea.ui-mini,
+input.ui-input-text.ui-slider-input,
+.ui-slider-switch.ui-mini .ui-slider-label {
+    font-size: 0.875em;
+}
+
+/* 12px > 0.75em */
+.ui-mini .ui-btn-inner,
+.ui-li-desc {
+    font-size: 0.75em;
+}
+
+/* 11px > 0.65em */
+.ui-li-has-count .ui-li-count {
+    font-size: 0.65em;
+}
+
 body {
     font-size: 14px;
 }
@@ -5,12 +47,12 @@ body {
 @media screen and (-webkit-device-pixel-ratio: 0.75) {
     body {font-size: 10.5px;}
 }
-@media screen and (-webkit-device-pixel-ratio: 1.0) {desktop browsers
+@media screen and (-webkit-device-pixel-ratio: 1.0) {
     body {font-size: 14px;}
 }
-@media screen and (-webkit-device-pixel-ratio: 1.5) {e.g. Google Nexus S (Samsung Galaxy S)
-    body {font-size: 16px;}
+@media screen and (-webkit-device-pixel-ratio: 1.5) {
+    body {font-size: 20px;}
 }
-@media screen and (-webkit-device-pixel-ratio: 2.0) {e.g. iPad
-    body {font-size: 18px;}
+@media screen and (-webkit-device-pixel-ratio: 2.0) {
+    body {font-size: 28px;}
 }

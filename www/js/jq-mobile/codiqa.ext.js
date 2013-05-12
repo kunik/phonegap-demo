@@ -37,5 +37,5 @@
     }
   });
 
-  $("header a").attr("rel","external");
+  $("#header a").attr("rel","external");
 })(jQuery);

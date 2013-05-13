@@ -32,13 +32,18 @@
     function onFSSuccess(fs) {
       fileSystem = fs;
 
-      console.log("Got the file system: " + fileSystem.name)
-      console.log("root entry name is " + fileSystem.root.name)
+      alert('fs - ok');
+
+      console.log("Got the file system: " + fileSystem.name);
+      console.log("root entry name is " + fileSystem.root.name);
+
+      alert('fs root: ' + fileSystem.root.name);
     }
 
     function onFSError() {
-      console.error('Failed work with file system')
-      console.log(arguments)
+      alert('fs - fail');
+      console.error('Failed work with file system');
+      console.log(arguments);
     }
 
     var canvas = document.getElementById("canvas");
@@ -47,20 +52,24 @@
     var draw2D = Draw2D.create({graphicsDevice: graphicsDevice});
 
     TurbulenzEngine.request = function (url, callback) {
-      fileSystem.root.getFile(url, {create: false}, function(f) {
-          reader = new FileReader();
-          reader.onloadend = function(e) {
-              console.log("go to end");
-              console.log("FILE: " + e.target.result);
-              callback(e.target.result, 0)
-          }
-          reader.readAsText(f);
+      alert('request - ' + url);
+      fileSystem.root.getFile(url, {}, function(fileEntry) {
+        fileEntry.file(function(file) {
+            var reader = new FileReader();
+            reader.onloadend = function(e) {
+            alert(this.result);
+            callback(this.result, 0)
+          };
+          reader.readAsText(file);
         }, onError);
+      }, onError);
     }
 
     document.addEventListener('deviceready', function() {
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSError);
-        load("spineboy");
+      alert('ready');
+      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSError);
+      alert('fs handler');
+      load("spineboy");
     }, false);
 
     var skeletonName;

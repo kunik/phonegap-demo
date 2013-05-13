@@ -28,6 +28,9 @@
   <script type="text/javascript" src="js/spine/SpriteBatch.js"></script>
   <script type="text/javascript">
     var fileSystem;
+      alert('1');
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSError);
+      alert('2');
 
     function onFSSuccess(fs) {
       fileSystem = fs;
@@ -64,14 +67,6 @@
     var TurbulenzEngine = WebGLTurbulenzEngine.create({canvas: canvas});
     var graphicsDevice = TurbulenzEngine.createGraphicsDevice({});
     var draw2D = Draw2D.create({graphicsDevice: graphicsDevice});
-
-
-    document.addEventListener('deviceready', function() {
-      alert('ready');
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSError);
-      alert('fs handler');
-      load("spineboy");
-    }, false);
 
     var skeletonName;
     function load (name) {

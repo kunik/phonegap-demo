@@ -27,13 +27,41 @@
   <script type="text/javascript" src="js/spine/draw2d.js"></script>
   <script type="text/javascript" src="js/spine/SpriteBatch.js"></script>
   <script type="text/javascript">
+    var fileSystem;
+
+    function onFSSuccess(fs) {
+      fileSystem = fs;
+
+      console.log("Got the file system: " + fileSystem.name)
+      console.log("root entry name is " + fileSystem.root.name)
+    }
+
+    function onFSError() {
+      console.error('Failed work with file system')
+      console.log(arguments)
+    }
+
     var canvas = document.getElementById("canvas");
     var TurbulenzEngine = WebGLTurbulenzEngine.create({canvas: canvas});
     var graphicsDevice = TurbulenzEngine.createGraphicsDevice({});
     var draw2D = Draw2D.create({graphicsDevice: graphicsDevice});
+
+    TurbulenzEngine.request = function (url, callback) {
+      fileSystem.root.getFile(url, {create: false}, function(f) {
+          reader = new FileReader();
+          reader.onloadend = function(e) {
+              console.log("go to end");
+              console.log("FILE: " + e.target.result);
+              callback(e.target.result, 0)
+          }
+          reader.readAsText(f);
+        }, onError);
+    }
+
     document.addEventListener('deviceready', function() {
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSError);
         load("spineboy");
-        }, false);
+    }, false);
 
     var skeletonName;
     function load (name) {

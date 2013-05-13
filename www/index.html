@@ -26,54 +26,13 @@
   <script type="text/javascript" src="js/spine/graphicsdevice.js"></script>
   <script type="text/javascript" src="js/spine/draw2d.js"></script>
   <script type="text/javascript" src="js/spine/SpriteBatch.js"></script>
+  <script type="text/javascript" src="res/spine/data.js"></script>
+
   <script type="text/javascript">
-
-    // Wait for PhoneGap to load
-    //
-    function onLoad() {
-      alert('onload');
-        document.addEventListener("deviceready", onDeviceReady, false);
-    }
-
-    // PhoneGap is ready
-    //
-    function onDeviceReady() {
-      alert('1');
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSError);
-      alert('2');
-    }
-
-    var fileSystem;
-
-    function onFSSuccess(fs) {
-      fileSystem = fs;
-
-      alert('fs - ok');
-
-      console.log("Got the file system: " + fileSystem.name);
-      console.log("root entry name is " + fileSystem.root.name);
-
-      alert('fs root: ' + fileSystem.root.name);
-    }
-
-    function onFSError() {
-      alert('fs - fail');
-      console.error('Failed work with file system');
-      console.log(arguments);
-    }
 
     WebGLTurbulenzEngine.prototype.request = function (url, callback) {
       alert('request - ' + url);
-      fileSystem.root.getFile(url, {}, function(fileEntry) {
-        fileEntry.file(function(file) {
-            var reader = new FileReader();
-            reader.onloadend = function(e) {
-            alert(this.result);
-            callback(this.result, 0)
-          };
-          reader.readAsText(file);
-        }, onError);
-      }, onError);
+      callback(DATA[url], 0);
     }
 
     var canvas = document.getElementById("canvas");
@@ -87,6 +46,10 @@
       TurbulenzEngine.request("res/spine/" + skeletonName + ".atlas", loadAtlas);
     }
 
+    TurbulenzEngine.base64Encode = function(data) {
+      return DATA[data]
+    }
+
     var atlas;
     function loadAtlas (atlasText) {
       var textureCount = 0;
@@ -95,6 +58,7 @@
           textureCount++;
           graphicsDevice.createTexture({
             src: "res/spine/" + path,
+            data: "res/spine/" + path,
             mipmaps: true,
             onload: function (texture) {
               page.rendererObject = texture;

@@ -32,6 +32,7 @@
 
     WebGLTurbulenzEngine.prototype.request = function (url, callback) {
       alert('request - ' + url);
+      alert(DATA);
       callback(DATA[url], 0);
     }
 
@@ -47,7 +48,7 @@
     }
 
     TurbulenzEngine.base64Encode = function(data) {
-      return DATA[data]
+      return DATA[data];
     }
 
     var atlas;

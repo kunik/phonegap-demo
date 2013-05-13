@@ -27,10 +27,23 @@
   <script type="text/javascript" src="js/spine/draw2d.js"></script>
   <script type="text/javascript" src="js/spine/SpriteBatch.js"></script>
   <script type="text/javascript">
-    var fileSystem;
+
+    // Wait for PhoneGap to load
+    //
+    function onLoad() {
+      alert('onload');
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // PhoneGap is ready
+    //
+    function onDeviceReady() {
       alert('1');
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSError);
+      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSError);
       alert('2');
+    }
+
+    var fileSystem;
 
     function onFSSuccess(fs) {
       fileSystem = fs;

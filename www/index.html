@@ -46,12 +46,7 @@
       console.log(arguments);
     }
 
-    var canvas = document.getElementById("canvas");
-    var TurbulenzEngine = WebGLTurbulenzEngine.create({canvas: canvas});
-    var graphicsDevice = TurbulenzEngine.createGraphicsDevice({});
-    var draw2D = Draw2D.create({graphicsDevice: graphicsDevice});
-
-    TurbulenzEngine.request = function (url, callback) {
+    WebGLTurbulenzEngine.prototype.request = function (url, callback) {
       alert('request - ' + url);
       fileSystem.root.getFile(url, {}, function(fileEntry) {
         fileEntry.file(function(file) {
@@ -64,6 +59,12 @@
         }, onError);
       }, onError);
     }
+
+    var canvas = document.getElementById("canvas");
+    var TurbulenzEngine = WebGLTurbulenzEngine.create({canvas: canvas});
+    var graphicsDevice = TurbulenzEngine.createGraphicsDevice({});
+    var draw2D = Draw2D.create({graphicsDevice: graphicsDevice});
+
 
     document.addEventListener('deviceready', function() {
       alert('ready');
